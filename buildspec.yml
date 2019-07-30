@@ -4,8 +4,7 @@ phases:
   pre_build: 
     commands: 
       - apt-get update -y 
-      - apt-get install -y software-properties-common 
-      - add-apt-repository ppa:openjdk-r/ppa 
+      - apt-get install -y software-properties-common
       - apt-get update -y 
       - curl -sL https://deb.nodesource.com/setup_10.x | bash -
       - apt-get install -y nodejs 
