@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>image</h1>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td><%= imageemail %></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <img src="<%= imageurl %>" width="500" height="333">
+                </td>
+            </tr>
+            <% for(let i of data){ %>
+                <tr>
+                    <td><%= i.commenter.S %></td>
+                    <td><%= i.comment.S %></td>
+                </tr>
+            <% } %>
+            <tr>
+                <td>
+                    <form action="/insertcomment" method="POST">
+                        <input type="hidden" name="imageurl" value="<%= imageurl %>">
+                        <input type="text" name="comment" required>
+                        <input type="submit" class="btn" value="Comment">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Upload image</title>
+        <h1>Upload your image</h1>
+    </head>
+    <body>
+        <table align= "center">
+                <tr>
+                    <td>
+                            <form method="POST" action="/upload" enctype="multipart/form-data">
+                                <div class="field">
+                                    <label for="image">Image Upload</label>
+                                    <input type="file" name="image" id="image">
+                                </div>
+                                <input type="radio" name="privacy" value="private" checked> Private
+                                <input type="radio" name="privacy" value="public" > Public<br>
+
+                                Hashtags: <input type="text" name="hashtag"><br>
+                                Description: <textarea rows = "5" cols = "60" name = "description"></textarea><br>
+
+                                Location: <input type="text" name="location"><br>
+                                <input type="submit" class="btn" value="Save">
+                            </form>
+                    </td>
+                </tr>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>User page</title>
+        <h1 align="center">PHOTOFEED</h1>
+    </head>
+    <body>
+        <!-- <h5><%= data[0].url.S %></h5> -->
+        <table align="center">
+            <tr>
+                <td align="center">
+                    <div style="float: left; width: 130px"> 
+                    <form method = "GET" action="/uploadpage">
+                    <input type="submit" class="btn" value="UPLOAD">
+                    </form>
+                    </div>
+                    <div style="float: right; width: 130px">
+                    <% if(login === 'null') {%>
+                        <form method = "GET" action = "/signuppage">
+                          <input type="submit" class="btn" value="SIGNUP">
+                        </form>
+                    </div>
+                    <div style="float: center; width: 130px">
+                        <form method = "GET" action = "/login">
+                          <input type="submit" class="btn" value="LOGIN">
+                        </form>
+                    </div>
+                    <% } else {%> 
+                        <div style="float: right; width: 225px">
+                        <form method="GET" action="/signout">
+                          <input type="submit" class="btn" value="SIGN OUT">
+                        </form>
+                        </div>
+                    <% } %>
+                </td>
+                <% if(login !== 'null') {%>
+                    <td>
+                        Hi, <%= username %>
+                    </td>
+                    <% if(login === 'google') {%>
+                    <td>
+                        <img src="<%= profilePicture %>" width="25" height="25">
+                    </td>
+                    <% } %>
+                    <td>
+                      <a href="/myAccount">My Account</a>
+                    </td>
+                <% } %>
+            </tr>
+            <%  for(let i of data) {%>
+                <tr>
+                  <td>
+                    <%= i.email.S %>
+                  </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <img src="<%= i.url.S %>" width="500" height="333">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <form method = "POST" action="/likeimage">
+                      <input type="hidden" name="imageemail" value="<%= i.email.S %>">
+                      <input type="hidden" name="imageurl" value="<%= i.url.S %>">
+                      <% if(i.likes !== undefined && i.likes.SS.indexOf(email) > -1){%>
+                            <input type="submit" class="btn" value="LIKE" style="background-color: #008CBA">
+                            <% if(i.likes){ %>
+                        <%= i.likes.SS.length %> 
+                        <a href="/likes">likes</a>
+                    <% }} else{%>
+                        <input type="submit" class="btn" value="LIKE">
+                        <% if(i.likes){ %>
+                            <%= i.likes.SS.length %> 
+                            <a href="/likes">likes</a>
+                    <% }} %>
+                    </form>
+                    </td>
+                    <td>
+                    <form method = "POST" action="/commentpage">
+                      <input type="hidden" name="imageemail" value="<%= i.email.S %>">
+                      <input type="hidden" name="imageurl" value="<%= i.url.S %>">
+                      <input type="submit" class="btn" value="COMMENT">
+                    </form> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">-------------------------------------------------------------------------------------------------------</td>
+                </tr>
+            <% } %>
+        </table>
+    </body>
+</html>
