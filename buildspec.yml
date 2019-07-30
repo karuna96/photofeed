@@ -8,7 +8,8 @@ phases:
       - apt-get update -y 
       - curl -sL https://deb.nodesource.com/setup_10.x | bash -
       - apt-get install -y nodejs 
-      - echo Logging in to Amazon ECR... 
+      - echo Logging in to Amazon ECR...
+      - node --version
       - aws --version 
       - $(aws ecr get-login --region us-east-1 --no-include-email) 
       - REPOSITORY_URI=889894765174.dkr.ecr.us-east-1.amazonaws.com/photofeed 
