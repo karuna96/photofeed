@@ -17,8 +17,6 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest} 
   build: 
     commands: 
-      - echo Maven build 
-      - mvn clean install 
       - echo Build started on `date` 
       - echo Building the Docker image... 
       - docker build -t $REPOSITORY_URI:latest . 
@@ -30,6 +28,3 @@ phases:
       - docker push $REPOSITORY_URI:latest 
       - docker push $REPOSITORY_URI:$IMAGE_TAG 
       - printf '[{"name":"photofeed","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json 
-artifacts: 
-    files:  
-      - imagedefinitions.json 
